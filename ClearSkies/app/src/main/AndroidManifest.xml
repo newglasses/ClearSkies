@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.newglasses.clearskies" >
+
+    <!-- Permission to use AlarmManager -->
+    <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <!-- Permission to Send SMS -->
+    <uses-permission android:name="android.permission.SEND_SMS" />
+    <!-- Permission to access the internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".Main"
+            android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity android:name=".MoreInfoNotification"
+            android:label="More on Notification"
+            android:parentActivityName=".Main">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Main"/>
+        </activity>
+
+        <receiver android:name=".AlertReceiver" />
+
+        <!-- Declare the service -->
+        <service
+            android:name=".FileService"
+            android:exported="false" />
+
+        <!-- Declare the service -->
+        <service
+            android:name=".JSONFileService"
+            android:exported="false" />
+
+    </application>
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+
+</manifest>
+    <!-- See more at: http://www.newthinktank.com/2014/12/make-android-apps-18/#sthash.BJ58qBzp.dpuf -->
+
