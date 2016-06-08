@@ -56,13 +56,13 @@ public class AlertReceiver extends BroadcastReceiver {
     public void startFileService(Context context) {
 
         // Create an intent to run the IntentService in the background
-        Intent intent = new Intent(context, XMLFileService.class);
+        Intent auroraIntent = new Intent(context, XMLFileService.class);
 
         // Pass the URL that the IntentService will download from
-        intent.putExtra("url", "http://aurorawatch.lancs.ac.uk/api/0.1/status.xml");
+        auroraIntent.putExtra("url", "http://aurorawatch.lancs.ac.uk/api/0.1/status.xml");
 
         // Start the intent service
-        context.startService(intent);
+        context.startService(auroraIntent);
 
     }
 
@@ -191,7 +191,6 @@ public class AlertReceiver extends BroadcastReceiver {
 
             // Used to read the data in small bytes to minimize system load
             BufferedReader bufferedReader = new BufferedReader(isr);
-
 
             // Create pull parser to parse XML documents
             XmlPullParserFactory factory = XmlPullParserFactory.newInstance();

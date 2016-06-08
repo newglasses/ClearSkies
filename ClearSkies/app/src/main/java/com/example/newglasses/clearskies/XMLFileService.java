@@ -18,7 +18,7 @@ import java.net.URL;
 public class XMLFileService extends IntentService{
 
     // Used to identify when the IntentService finishes
-    public static final String TRANSACTION_DONE = "com.example.newglasses.TRANSACTION_DONE";
+    public static final String XML_TRANSACTION_DONE = "com.example.newglasses.XML_TRANSACTION_DONE";
 
     // Validates resource references inside Android XML files
     public XMLFileService() {
@@ -42,7 +42,7 @@ public class XMLFileService extends IntentService{
         Log.e("XMLFileService", "Service Stopped");
 
         // Broadcast an intent back to Main when file is downloaded
-        Intent i = new Intent(TRANSACTION_DONE);
+        Intent i = new Intent(XML_TRANSACTION_DONE);
         XMLFileService.this.sendBroadcast(i);
 
     }
@@ -85,7 +85,7 @@ public class XMLFileService extends IntentService{
                 // Write the data received to our file
                 outputStream.write(buffer, 0, bufferLength);
 
-                Log.e("inside fileService", "buffer length: " + bufferLength);
+                Log.e("inside XMLFileService", "buffer length: " + bufferLength);
 
             }
 

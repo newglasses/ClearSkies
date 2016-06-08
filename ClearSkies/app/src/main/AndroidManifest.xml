@@ -36,7 +36,7 @@
 
         <!-- Declare the service -->
         <service
-            android:name=".FileService"
+            android:name=".XMLFileService"
             android:exported="false" />
 
         <!-- Declare the service -->

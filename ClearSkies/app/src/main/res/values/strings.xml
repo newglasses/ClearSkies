@@ -1,6 +1,11 @@
 <resources>
     <string name="app_name">ClearSkies</string>
 
-    <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
+    <string name="show">Show Notification</string>
+    <string name="stop">Stop Notification</string>
+    <string name="alert">Alert Notification</string>
+    <string name="editText">Info on the notification</string>
+    <string name="text">Info downloaded </string>
+
 </resources>

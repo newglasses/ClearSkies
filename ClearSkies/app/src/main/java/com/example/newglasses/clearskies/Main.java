@@ -34,8 +34,6 @@ import java.util.GregorianCalendar;
 
 public class Main extends AppCompatActivity {
 
-    Button showNotificationBut, stopNotificationBut, alertButton;
-
     TextView textViewAurora, textViewWeather;
 
     // Allows us to notify the user that something happened in the background
@@ -52,10 +50,7 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Initialize buttons
-        showNotificationBut = (Button) findViewById(R.id.show);
-        stopNotificationBut = (Button) findViewById(R.id.stop);
-        alertButton = (Button) findViewById(R.id.alert);
+        // Initialize textViews
         textViewAurora = (TextView) findViewById(R.id.textAurora);
         textViewWeather = (TextView) findViewById(R.id.textWeather);
 
@@ -67,8 +62,11 @@ public class Main extends AppCompatActivity {
         IntentFilter intentFilterWeather = new IntentFilter();
         intentFilterWeather.addAction(JSONFileService.JSON_TRANSACTION_DONE);
 
+        IntentFilter intentFilterAurora = new IntentFilter();
+        intentFilterWeather.addAction(XMLFileService.XML_TRANSACTION_DONE);
+
         // Prepare the main thread to receive a broadcast and act on it
-        //registerReceiver(downloadReceiverAurora, intentFilterAurora);
+        registerReceiver(downloadReceiverAurora, intentFilterAurora);
 
         registerReceiver(downloadReceiverWeather, intentFilterWeather);
 
@@ -85,7 +83,7 @@ public class Main extends AppCompatActivity {
 
             Log.e("XMLFileService", "Service Received");
 
-            showFileContents();
+            showAuroraContents();
 
         }
     };
@@ -165,7 +163,7 @@ public class Main extends AppCompatActivity {
     }
 
     // Will read our local file and put the text in the EditText
-    public void showFileContents(){
+    public void showAuroraContents(){
 
         // Will build the String from the local file
         StringBuilder sb;
@@ -249,7 +247,7 @@ public class Main extends AppCompatActivity {
                 sb.append(xmlPullParserArray[i]).append(" " + i).append("\n");
             }
 
-            textViewAurora.setText(sb.toString());
+            textViewAurora.setText(xmlPullParserArray[1]);
 
 
         } catch (FileNotFoundException e) {
@@ -354,10 +352,10 @@ public class Main extends AppCompatActivity {
         Long alertTime = new GregorianCalendar().getTimeInMillis()+5*1000;
         // Long intervalTime = Long.valueOf(5000);
 
-        Intent fileServiceIntent = new Intent (this, XMLFileService.class);
+        //Intent fileServiceIntent = new Intent (this, XMLFileService.class);
 
         // Pass the URL that the IntentService will download from
-        fileServiceIntent.putExtra("url", "http://aurorawatch.lancs.ac.uk/api/0.1/status.xml");
+        //fileServiceIntent.putExtra("url", "http://aurorawatch.lancs.ac.uk/api/0.1/status.xml");
 
         // Start the intent service
         //this.startService(fileServiceIntent);
